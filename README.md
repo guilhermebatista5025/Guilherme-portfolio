@@ -8,7 +8,7 @@
 
 ## 🌐 Deploy
 
-👉 [Coloque aqui o link do seu site]
+👉 https://guilherme-portfolio-plum.vercel.app/
 
 ## 📸 Preview
 
