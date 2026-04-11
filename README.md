@@ -12,7 +12,7 @@
 
 ## 📸 Preview
 
-(Coloca um print aqui depois)
+![alt text](image.png)
 
 ## 📬 Contato
 
