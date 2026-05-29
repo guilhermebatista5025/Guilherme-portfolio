@@ -35,15 +35,20 @@ setTimeout(type, 1500);
 
 // ── SCROLL REVEAL
 const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: .12 });
-reveals.forEach(r => obs.observe(r));
+let obs;
+if (typeof IntersectionObserver !== 'undefined') {
+  obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .12 });
+  reveals.forEach(r => obs.observe(r));
+} else {
+  reveals.forEach(r => r.classList.add('visible'));
+}
 
 // ── COUNT UP
 const counters = document.querySelectorAll('.stat-num[data-target]');
@@ -67,36 +72,36 @@ counters.forEach(c => cObs.observe(c));
 // ── DATA DE PROJETOS (Aplicações Reais & Clones de Estudo)
 const projectsData = [
   {
-    id: 'mariano',
-    title: 'PDV Mariano',
+    id: 'PDV MANAAIM-ICM',
+    title: 'PDV MANAAIM-ICM',
     category: 'real',
-    desc: 'Sistema de Ponto de Venda (PDV) completo desenvolvido sob medida para uma empresa de Refrigeração, integrando controle de estoque, fluxo de caixa e relatórios comerciais.',
+    desc: 'Sistema de PDV desenvolvido especialmente para minha igreja, com foco em organização, agilidade e controle financeiro. O projeto foi criado para facilitar vendas em cantinas, eventos e arrecadações, trazendo uma interface simples, prática e eficiente para os voluntários utilizarem no dia a dia.',
     longDesc: 'Uma solução de software robusta construída sob medida para otimizar as operações comerciais cotidianas de uma empresa de Refrigeração. O sistema realiza o controle completo de entrada e saída de mercadorias, gestão de clientes, controle de vendas rápidas e faturamento em tempo real. Conta com uma arquitetura escalável capaz de lidar com grande volume de produtos e transações diárias.',
-    tags: ['Node.js', 'Express', 'MySQL', 'REST API', 'Figma'],
-    images: ['img-projetos/mariano.png', 'img-projetos/Ambiente de trabalho moderno e acolhedor.png'],
+    tags: ['HTML', 'CSS', 'JavaScript', 'REST API', 'Express'],
+    images: ['img-projetos/pdv-pro.png', 'img-projetos/Ambiente de trabalho moderno e acolhedor.png'],
     demo: '#',
     github: 'https://github.com/guilhermebatista5025/pdv-mariano/tree/main',
     features: ['Controle de Estoque Inteligente', 'Integração de Faturamento e Vendas', 'Relatórios Financeiros e Estatísticas Avançadas', 'Interface do Usuário Projetada no Figma']
   },
   {
-    id: 'linhares',
-    title: 'Linhares Serviços',
+    id: 'ECOMMERCE - RUGAL MODAS',
+    title: 'RUGAL MODAS',
     category: 'real',
-    desc: 'Plataforma web completa para contratação e gerenciamento de prestadores de serviços, profissionais autônomos e relatórios operacionais.',
+    desc: 'E-commerce desenvolvido para a Rugal Modas com foco em modernidade, praticidade e aumento das vendas online. O projeto foi criado para oferecer uma experiência rápida, intuitiva e profissional para os clientes, permitindo que encontrem produtos com facilidade e realizem compras de forma simples e segura.',
     longDesc: 'Um ecossistema completo para conectar clientes a profissionais qualificados. Inclui um sistema robusto de busca filtrada por especialidade, fluxo de contratação online, processamento seguro de pagamentos e um dashboard administrativo avançado com gerenciamento de relatórios, serviços e estatísticas operacionais de faturamento.',
-    tags: ['React', 'Supabase', 'Mercado Pago', 'Tailwind', 'REST API'],
-    images: ['img-projetos/linhares--serviços.png', 'img-projetos/Ambiente de trabalho moderno e acolhedor.png'],
+    tags: ['React', 'Supabase', 'Tailwind', 'REST API', 'GSAP'],
+    images: ['', 'img-projetos/Ambiente de trabalho moderno e acolhedor.png'],
     demo: '#',
     github: 'https://github.com/guilhermebatista5025/Linhares-Servi-os',
     features: ['Autenticação Segura (Supabase)', 'Gateways de Pagamento Integrado (Mercado Pago)', 'Dashboard Admin Integrado', 'Painel de Relatórios Dinâmicos']
   },
   {
-    id: 'veltrix',
-    title: 'Veltrix - Apple Affiliate LP',
+    id: 'SANCAR VEICULOS',
+    title: 'SANCAR VEICULOS',
     category: 'real',
     desc: 'Landing page premium focada na conversão e afiliação a produtos Apple. Alta performance e design baseado em diretrizes oficiais.',
     longDesc: 'Uma página de vendas de alto padrão focada na experiência do usuário e otimização de conversão (CRO). O projeto foi idealizado no Figma e implementado com animações fluidas e design altamente responsivo, garantindo tempos de carregamento mínimos e ótimas taxas de engajamento.',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'Figma', 'Vercel'],
+    tags: ['HTML', 'CSS', 'JavaScript', 'Vercel'],
     images: ['img-projetos/veltrix.png'],
     demo: 'https://projeto-afiliado-nine.vercel.app/',
     github: 'https://github.com/guilhermebatista5025/projeto-afiliado',
@@ -140,8 +145,8 @@ const projectsData = [
   },
   // Projetos adicionais baseados no feedback do usuário (Supabase, Mercado Pago, JWT, etc.)
   {
-    id: 'ecommerce',
-    title: 'Premium E-Commerce Platform',
+    id: 'MENELLI VEICULOS',
+    title: 'MENELLI VEICULOS',
     category: 'real',
     desc: 'Loja virtual moderna com carrinho de compras persistente, autenticação segura por JWT e pagamento integrado via Mercado Pago.',
     longDesc: 'Um sistema de comércio eletrônico robusto focado em experiência de checkout rápido e seguro. Ele integra autenticação baseada em JWT com o banco de dados Supabase para persistir sessões de usuários, carrinhos de compras e histórico de pedidos. O processamento de pagamentos é integrado de ponta a ponta com o gateway oficial do Mercado Pago.',
@@ -152,8 +157,8 @@ const projectsData = [
     features: ['Autenticação Baseada em JWT', 'Integração Oficial com Mercado Pago API', 'Persistência de Dados e Carrinho no Supabase', 'Painel Completo de Rastreamento de Pedidos']
   },
   {
-    id: 'financas',
-    title: 'Fintech Dashboard Admin',
+    id: 'AUTO SPORT CENTRO AUTOMOTIVO',
+    title: 'AUTO SPORT CENTRO AUTOMOTIVO',
     category: 'real',
     desc: 'Painel administrativo financeiro para controle de fluxo de caixa corporativo, faturamento mensal e relatórios dinâmicos.',
     longDesc: 'Dashboard financeiro premium projetado para pequenas empresas. Permite o acompanhamento de receitas, despesas, faturamento mensal e projeções financeiras. Os dados são armazenados de forma ultra-segura no Supabase com proteção no nível de linha (RLS).',
@@ -164,8 +169,8 @@ const projectsData = [
     features: ['Gráficos Financeiros Dinâmicos (Chart.js)', 'Segurança Avançada no Nível de Linha (RLS)', 'Exportação Automática de Relatórios Financeiros', 'Controle Completo de Refresh Tokens']
   },
   {
-    id: 'agendamentos',
-    title: 'SaaS de Agendamento Profissional',
+    id: 'GLAUCIA ELEGANCIA ESTILO',
+    title: 'GLAUCIA ELEGANCIA ESTILO',
     category: 'real',
     desc: 'Sistema SaaS completo para clínicas e salões, com notificações automáticas, controle de agenda e pagamentos de sinal.',
     longDesc: 'Uma aplicação SaaS voltada para profissionais de serviços que necessitam gerenciar horários de clientes. Conta com envio automático de lembretes, checkout Mercado Pago para pagamento de taxas de reserva, e painel administrativo integrado.',
@@ -175,30 +180,6 @@ const projectsData = [
     github: '#',
     features: ['Reserva de Horários Online', 'Integração de Pagamento de Reserva', 'Notificações Automatizadas', 'Suporte Multi-empresa (SaaS)']
   },
-  {
-    id: 'taskmanager',
-    title: 'TaskFlow - Gestor de Equipes',
-    category: 'estudo',
-    desc: 'Gerenciador de tarefas corporativas Kanban em tempo real, com chat integrado e controle de progresso.',
-    longDesc: 'Aplicativo estilo Kanban voltado para colaboração corporativa. Utiliza os canais de tempo real (Real-time channels) do Supabase para atualizar quadros de tarefas instantaneamente para toda a equipe, acompanhado de relatórios de produtividade.',
-    tags: ['React', 'Supabase', 'Tailwind', 'JWT', 'REST API'],
-    images: ['img-projetos/Ambiente de trabalho moderno e acolhedor.png'],
-    demo: '#',
-    github: '#',
-    features: ['Sincronização Kanban Real-Time', 'Autenticação Robusta JWT', 'Chat de Equipe Integrado', 'Níveis de Permissões de Membros']
-  },
-  {
-    id: 'authsystem',
-    title: 'Secure Auth Gateway',
-    category: 'estudo',
-    desc: 'Microsserviço de autenticação avançado com tokens JWT, controle de refresh tokens e proteção de rotas.',
-    longDesc: 'Uma API de gateway de segurança desenvolvida em Node.js com Express. Focada no aprendizado de segurança avançada, implementando criptografia bcrypt, verificação de e-mail de dois fatores, gerenciamento de tokens de atualização (Refresh Tokens) no Redis e cookies HTTP-only.',
-    tags: ['Node.js', 'Express', 'JWT', 'Redis', 'SQL'],
-    images: ['img-projetos/Ambiente de trabalho moderno e acolhedor.png'],
-    demo: '#',
-    github: '#',
-    features: ['Proteção de Cookies Secure/HTTP-Only', 'Renovação Silenciosa de Tokens', 'Algoritmo de Hash Criptográfico BCrypt', 'Middleware de Proteção de Rotas API']
-  }
 ];
 
 // ── RENDERIZAR CARDS DE PROJETO DINAMICAMENTE
@@ -255,8 +236,10 @@ function renderProjects(filter = 'all') {
     projectsGrid.appendChild(card);
 
     // Registrar no IntersectionObserver para animação de fade-in
-    if (typeof obs !== 'undefined') {
+    if (typeof obs !== 'undefined' && obs) {
       obs.observe(card);
+    } else {
+      card.classList.add('visible');
     }
   });
   

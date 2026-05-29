@@ -1274,7 +1274,8 @@ section {
     flex-shrink: 0;
 }
 
-.contact-card-icon i {
+.contact-card-icon i,
+.contact-card-icon svg {
     width: 20px;
     height: 20px;
 }
