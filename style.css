@@ -73,6 +73,19 @@ body::before {
 }
 
 /* ── GLOBAL COMPONENTS ── */
+/* ── SCROLL REVEAL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .section-tag {
   font-family: var(--font-mono);
   font-size: 0.85rem;
@@ -212,6 +225,54 @@ body::before {
   width: 100%;
 }
 
+/* Botão do Menu Hamburguer (Mobile) - Oculto por padrão no Desktop */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: var(--transition);
+  gap: 5px;
+  padding: 0;
+}
+
+.mobile-menu-toggle:hover {
+  border-color: var(--cyan);
+  background: rgba(0, 240, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.mobile-menu-toggle .bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--white);
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+/* Transformação para 'X' quando ativo */
+.mobile-menu-toggle.active .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background-color: var(--cyan);
+}
+
+.mobile-menu-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background-color: var(--cyan);
+}
+
 /* ── HERO SECTION ── */
 #hero {
   min-height: 100vh;
@@ -328,12 +389,14 @@ body::before {
 }
 
 .hero-name {
+  font-family: var(--font-mono);
   font-size: 4.8rem;
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -2px;
   margin-bottom: 16px;
   color: var(--white);
+  text-shadow: 0 0 30px rgba(0, 102, 255, 0.15);
 }
 
 .hero-name span {
@@ -342,6 +405,7 @@ body::before {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   display: block;
+  filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.35));
 }
 
 .hero-role {
@@ -2090,10 +2154,82 @@ footer span:last-child {
 }
 
 @media (max-width: 768px) {
+  /* Alinhamento e espaçamento compacto para o header no mobile */
+  #nav {
+    padding: 20px 24px !important;
+  }
+
+  #nav.scrolled {
+    padding: 12px 24px !important;
+  }
+
+  /* Forçar o logo a ser compacto no mobile desde o início para evitar saltos e mantê-lo na esquerda */
+  .logo-laser-container.header-logo {
+    height: 78px !important;
+    width: 140px !important;
+  }
+
+  .logo-laser-container.header-logo img {
+    height: 120px !important;
+  }
+
+  .logo-laser-container.header-logo::before {
+    width: 50px !important;
+    height: 90px !important;
+  }
+
+  /* Exibir botão hamburguer */
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  /* Transformar links em menu suspenso */
   .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(5, 7, 15, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 30px 40px;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    gap: 20px;
+    align-items: flex-start;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    z-index: 998;
+  }
+
+  /* Exibir menu quando ativo */
+  .nav-links.active {
+    display: flex;
+    animation: slideDown 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  }
+
+  .nav-links li:last-child a {
+    border-bottom: none;
+  }
+
+  /* Esconder completamente a badge de status (frase e bolinha piscando) no mobile */
+  .hero-status-badge {
     display: none;
   }
 
+  /* Ajustes adicionais para o hero */
   .hero-name {
     font-size: 3rem;
     letter-spacing: -1.5px;
@@ -2107,6 +2243,7 @@ footer span:last-child {
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    width: 100%;
   }
 
   .hero-btns .btn {
@@ -2122,6 +2259,18 @@ footer span:last-child {
 
   .about-stats {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Animação de Entrada do Menu Dropdown */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

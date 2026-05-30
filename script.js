@@ -188,9 +188,40 @@ const NavbarManager = {
 
     window.addEventListener('scroll', () => this.handleScroll());
     this.handleScroll(); // Verificação inicial
+
+    // Lógica do Menu Hamburguer Mobile
+    this.menuToggle = document.getElementById('mobileMenuToggle');
+    this.navLinks = document.querySelector('.nav-links');
+
+    if (this.menuToggle && this.navLinks) {
+      this.menuToggle.addEventListener('click', () => this.toggleMenu());
+
+      // Fechar o menu ao clicar em qualquer link
+      const links = this.navLinks.querySelectorAll('a');
+      links.forEach(link => {
+        link.addEventListener('click', () => this.closeMenu());
+      });
+
+      // Fechar o menu ao clicar fora dele
+      document.addEventListener('click', (e) => {
+        if (!this.nav.contains(e.target) && this.navLinks.classList.contains('active')) {
+          this.closeMenu();
+        }
+      });
+    }
   },
   handleScroll() {
     this.nav.classList.toggle('scrolled', window.scrollY > 50);
+  },
+  toggleMenu() {
+    this.menuToggle.classList.toggle('active');
+    this.navLinks.classList.toggle('active');
+  },
+  closeMenu() {
+    if (this.menuToggle && this.navLinks) {
+      this.menuToggle.classList.remove('active');
+      this.navLinks.classList.remove('active');
+    }
   }
 };
 
@@ -233,14 +264,31 @@ const TypewriterManager = {
 
 /**
  * Gerenciador do Scroll Reveal (Animações de Rolagem)
- * Elementos visíveis por padrão a pedido do usuário (CSS nativo). 
- * Mantido como bypass leve caso necessário.
+ * Revela os elementos gradualmente ao rolar a página utilizando Intersection Observer de alto desempenho.
  */
 const ScrollRevealManager = {
   init() {
     this.reveals = document.querySelectorAll('.reveal');
     if (this.reveals.length === 0) return;
-    this.reveals.forEach(el => el.classList.add('visible'));
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      this.obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            this.obs.unobserve(entry.target); // Libera o elemento após ser revelado
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      this.reveals.forEach(el => this.obs.observe(el));
+    } else {
+      // Failsafe para navegadores antigos
+      this.reveals.forEach(el => el.classList.add('visible'));
+    }
   },
   revealElement(el) {
     if (el) el.classList.add('visible');
