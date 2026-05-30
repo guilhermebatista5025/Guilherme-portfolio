@@ -1580,29 +1580,32 @@ footer span:last-child {
 }
 
 .modal-close-btn {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  color: var(--white-muted);
-  width: 40px;
-  height: 40px;
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  background: rgba(8, 12, 21, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: var(--white);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: 10002; /* Garante que fique acima de todo o conteúdo e backdrop */
   transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25);
+  backdrop-filter: blur(8px);
 }
 
 .modal-close-btn:hover {
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(239, 68, 68, 0.2);
   border-color: #ef4444;
   color: #ef4444;
-  transform: rotate(90deg);
+  transform: scale(1.05) rotate(90deg);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
 }
 
 .modal-grid {
@@ -2135,8 +2138,12 @@ footer span:last-child {
   }
 
   .modal-gallery {
-    height: 320px;
-    min-height: 320px;
+    height: 380px;
+    min-height: 380px;
+  }
+
+  .browser-viewport {
+    min-height: 344px !important;
   }
 
   .modal-info {
@@ -2259,6 +2266,45 @@ footer span:last-child {
 
   .about-stats {
     grid-template-columns: 1fr;
+  }
+
+  /* Ocultar alternância de Print/Live no Mobile */
+  .browser-toggles {
+    display: none !important;
+  }
+
+  /* Ajuste responsivo para o botão flutuante de fechar */
+  .modal-close-btn {
+    top: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    font-size: 1.5rem;
+    background: rgba(8, 12, 21, 0.92);
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.2);
+  }
+
+  /* Maximizar a área do modal e da previsualização do site no mobile */
+  .modal-content {
+    width: 96% !important;
+    max-height: 90vh !important;
+  }
+
+  .modal-grid {
+    max-height: 90vh !important;
+  }
+
+  .modal-gallery {
+    height: 500px !important;
+    min-height: 500px !important;
+  }
+
+  .browser-viewport {
+    min-height: 464px !important; /* 500px - 36px de header do mockup */
+  }
+
+  .modal-slide {
+    padding: 8px !important; /* Reduz margem interna de 24px para 8px, liberando 32px de largura real ao site */
   }
 }
 

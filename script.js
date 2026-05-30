@@ -479,10 +479,18 @@ const ModalManager = {
 
     this.modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Ocultar barra de navegação do portfólio para evitar que sobreponha o modal
+    const nav = document.getElementById('nav');
+    if (nav) nav.style.display = 'none';
   },
   close() {
     this.modal.classList.remove('active');
     document.body.style.overflow = '';
+    
+    // Restaurar barra de navegação do portfólio ao fechar o modal
+    const nav = document.getElementById('nav');
+    if (nav) nav.style.display = '';
     
     // Para o temporizador para liberar recursos
     this.pauseSlideshow();
