@@ -145,8 +145,8 @@ const projectsData = [
       'img-projetos/glaucia-elegancia/slide2.png',
       'img-projetos/glaucia-elegancia/slide3.png'
     ],
-    demo: '#',
-    github: '#',
+    demo: 'https://glauciaeleganciaestilo-e-commerce.vercel.app/',
+    github: 'https://github.com/guilhermebatista5025/glauciaeleganciaestilo-e-commerce',
     features: ['Reserva de Horários Online', 'Integração de Pagamento de Reserva', 'Notificações Automatizadas', 'Suporte Multi-empresa (SaaS)']
   },
   {
@@ -164,7 +164,66 @@ const projectsData = [
     demo: 'https://cantina-formulario-icm.vercel.app/',
     github: 'https://github.com/guilhermebatista5025/cantina-formulario-icm',
     features: ['Geração Dinâmica de Campos de Formulário', 'Validação Completa de Formulários sem Refresh', 'Integração de Mensagens Formatadas via API do WhatsApp', 'Interface Otimizada para Dispositivos Móveis']
-  }
+  },
+  {
+    id: 'RADIO PULSO FM',
+    title: 'RÁDIO PULSO 98.7 FM',
+    category: 'real',
+    desc: 'Plataforma digital de streaming ao vivo para rádio FM/Web com player dinâmico em tempo real, equalizador de som, grade de programação semanal e pedidos integrados via WhatsApp.',
+    longDesc: 'O Pulso FM é uma solução de streaming de áudio digital completa desenvolvida para a rádio Pulso 98.7 FM de Vila Velha – ES. A plataforma conta com um player de áudio persistente (sticky bottom bar) com equalizador dinâmico animado e sistema de RDS que atualiza o nome do artista/faixa tocada em tempo real. Possui também um carrossel slider responsivo no hero, seção de locutores e equipe de plantão com atalhos de redes sociais, grade de programação diária interativa, blog de notícias nativo com modal de leitura rápida e integração com a API do WhatsApp para interatividade direta e envio de pedidos musicais.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Web Audio API', 'SEO'],
+    images: [
+      'https://radio-desenvolvimento-para-venda.vercel.app/assets/icons/icon-512x512.png',
+      'https://radio-desenvolvimento-para-venda.vercel.app/assets/images/banner_radio_brand.png',
+      'https://radio-desenvolvimento-para-venda.vercel.app/assets/images/banner_radio_whatsapp.png',
+      'https://radio-desenvolvimento-para-venda.vercel.app/assets/images/banner_radio_show.png'
+    ],
+    demo: 'https://radio-desenvolvimento-para-venda.vercel.app',
+    github: 'https://github.com/guilhermebatista5025/radio-desenvolvimento-para-venda.git',
+    features: [
+      'Player Sticky Persistente na Barra Inferior para Controle Contínuo',
+      'Equalizador Dinâmico Animado em CSS e Sistema RDS de Faixa Atual',
+      'Grade de Programação Semanal Interativa e Perfil de Locutores',
+      'Pedidos de Música e Interação Direta Integrados ao WhatsApp da Rádio',
+      'Blog de Notícias com Modal de Leitura Rápida e Otimização Avançada de SEO'
+    ]
+  },
+    {
+    id: 'BOLEIRAGEM IMPORTS OFC',
+    title: 'E-COMMERCE ESPORTIVO',
+    category: 'real',
+    desc: 'Plataforma de e-commerce especializada em camisas de futebol nacionais, internacionais e colecionáveis, com foco em experiência premium e alta conversão.',
+    longDesc: 'A Boleiragem Imports Ofc é um e-commerce moderno desenvolvido para apaixonados por futebol, oferecendo uma experiência de compra intuitiva, rápida e visualmente impactante. O projeto conta com catálogo inteligente, destaques promocionais, categorias personalizadas, sistema de busca avançada, banners interativos e design premium inspirado nas maiores lojas esportivas do mercado. Toda a aplicação foi construída com foco em performance, escalabilidade e conversão de vendas, proporcionando uma navegação fluida tanto em dispositivos móveis quanto desktop.',
+    tags: [
+      'HTML5',
+      'CSS3',
+      'JavaScript',
+      'Responsive Design',
+      'E-commerce',
+      'UI/UX',
+      'PWA'
+    ],
+    images: [
+      'img-projetos/boleiragem/slide1.jpg',
+      'img-projetos/boleiragem/slide2.jpg',
+      'img-projetos/boleiragem/slide3.jpg',
+      'img-projetos/boleiragem/slide4.jpg'
+    ],
+    demo: 'https://boleiragemimportsofc.vercel.app/',
+    github: 'https://github.com/guilhermebatista5025/boleiragemimportsofc.git',
+    features: [
+      'Catálogo Completo de Camisas Nacionais e Internacionais',
+      'Sistema de Categorias Inteligentes',
+      'Banners Promocionais Interativos',
+      'Design Premium Inspirado em Grandes E-commerces',
+      'Layout 100% Responsivo para Mobile e Desktop',
+      'Busca e Navegação Otimizadas',
+      'Páginas de Produto Modernas e Escaláveis',
+      'Arquitetura Preparada para Integração com Gateway de Pagamento',
+      'Preparação para Transformação em PWA',
+      'Experiência de Compra Fluida e Focada em Conversão'
+    ]
+  },
 ];
 
 // ── 2. GERENCIADORES MODULARES (Escopo Isolado & Defensivo)
